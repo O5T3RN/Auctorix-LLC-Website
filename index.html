@@ -12,6 +12,8 @@
 </head>
 <body>
 
+<div class="cursor" id="cursor" aria-hidden="true"><div class="cursor__dot"></div><div class="cursor__ring"></div></div>
+
 <div class="scroll-rail" aria-hidden="true"><div class="scroll-rail__fill" id="railFill"></div></div>
 
 <!-- Three.js hero canvas — sits behind everything in the hero -->
@@ -25,10 +27,10 @@
       <span class="nav__word">AUCTORIX</span>
     </a>
     <nav class="nav__links" aria-label="Primary">
-      <a href="#work" data-section="work"><span class="nav__tag">§01</span>Work</a>
-      <a href="#approach" data-section="approach"><span class="nav__tag">§02</span>Approach</a>
-      <a href="#services" data-section="services"><span class="nav__tag">§03</span>Services</a>
-      <a href="#about" data-section="about"><span class="nav__tag">§04</span>About</a>
+      <a href="#work" data-section="work"><span class="nav__tag">§01</span><span class="scramble">Work</span></a>
+      <a href="#approach" data-section="approach"><span class="nav__tag">§02</span><span class="scramble">Approach</span></a>
+      <a href="#services" data-section="services"><span class="nav__tag">§03</span><span class="scramble">Services</span></a>
+      <a href="#about" data-section="about"><span class="nav__tag">§04</span><span class="scramble">About</span></a>
       <a href="#contact" class="nav__cta">Start a project</a>
     </nav>
     <button class="nav__burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
@@ -39,11 +41,11 @@
 
 <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
   <nav aria-label="Mobile primary">
-    <a href="#work" data-section="work"><span class="mobile-menu__num">§01</span>Work</a>
-    <a href="#approach" data-section="approach"><span class="mobile-menu__num">§02</span>Approach</a>
-    <a href="#services" data-section="services"><span class="mobile-menu__num">§03</span>Services</a>
-    <a href="#about" data-section="about"><span class="mobile-menu__num">§04</span>About</a>
-    <a href="#contact" data-section="contact"><span class="mobile-menu__num">§05</span>Contact</a>
+    <a href="#work" data-section="work"><span class="mobile-menu__num">§01</span><span class="scramble">Work</span></a>
+    <a href="#approach" data-section="approach"><span class="mobile-menu__num">§02</span><span class="scramble">Approach</span></a>
+    <a href="#services" data-section="services"><span class="mobile-menu__num">§03</span><span class="scramble">Services</span></a>
+    <a href="#about" data-section="about"><span class="mobile-menu__num">§04</span><span class="scramble">About</span></a>
+    <a href="#contact" data-section="contact"><span class="mobile-menu__num">§05</span><span class="scramble">Contact</span></a>
   </nav>
   <div class="mobile-menu__footer">
     <span>Coos Bay, Oregon</span><span>Est. 2026</span>
@@ -69,9 +71,9 @@
     <div class="hero__content">
       <p class="eyebrow"><span class="eyebrow__dot"></span>Marketing studio — Coos Bay, OR</p>
       <h1 class="hero__title">
-        <span class="hero__title-line">Authority is</span>
-        <span class="hero__title-line hero__title-line--accent">built, not<span class="hero__title-asterisk">*</span></span>
-        <span class="hero__title-line">borrowed.</span>
+        <span class="hero__title-line"><span class="word-reveal">Authority is</span></span>
+        <span class="hero__title-line hero__title-line--accent"><span class="word-reveal">built, not<span class="hero__title-asterisk">*</span></span></span>
+        <span class="hero__title-line"><span class="word-reveal">borrowed.</span></span>
       </h1>
       <p class="hero__sub">Auctorix designs the systems behind brands people trust — the campaigns, the content cadence, the proof — so growth holds its angle instead of collapsing under pressure.</p>
       <div class="hero__actions">
@@ -122,8 +124,8 @@
             <h3 class="case__headline">Service-bay leads, +142% in one quarter</h3>
             <p class="case__copy">Rebuilt the local paid and organic funnel around real inventory and real appointment slots instead of generic offers — replacing guesswork with a weekly testing cadence.</p>
             <div class="case__stats">
-              <div><span class="case__stat">+142%</span><span class="case__stat-label">qualified leads</span></div>
-              <div><span class="case__stat">−31%</span><span class="case__stat-label">cost per lead</span></div>
+              <div><span class="case__stat" data-stat="+142%">+142%</span><span class="case__stat-label">qualified leads</span></div>
+              <div><span class="case__stat" data-stat="−31%">−31%</span><span class="case__stat-label">cost per lead</span></div>
             </div>
           </div>
         </div>
@@ -137,8 +139,8 @@
             <h3 class="case__headline">A content engine that outlasted the season</h3>
             <p class="case__copy">Replaced one-off posts with a repeatable production system — brief, shoot, cut, publish — so off-season bookings stopped depending on luck.</p>
             <div class="case__stats">
-              <div><span class="case__stat">3.4x</span><span class="case__stat-label">off-season bookings</span></div>
-              <div><span class="case__stat">21</span><span class="case__stat-label">assets / week, sustained</span></div>
+              <div><span class="case__stat" data-stat="3.4x">3.4x</span><span class="case__stat-label">off-season bookings</span></div>
+              <div><span class="case__stat" data-stat="21">21</span><span class="case__stat-label">assets / week, sustained</span></div>
             </div>
           </div>
         </div>
@@ -152,8 +154,8 @@
             <h3 class="case__headline">Made a 40-year-old brand legible online</h3>
             <p class="case__copy">Untangled a decade of inconsistent messaging into one clear position, then rebuilt the site and outbound sequence around it.</p>
             <div class="case__stats">
-              <div><span class="case__stat">+88%</span><span class="case__stat-label">organic sessions</span></div>
-              <div><span class="case__stat">5.2x</span><span class="case__stat-label">demo requests</span></div>
+              <div><span class="case__stat" data-stat="+88%">+88%</span><span class="case__stat-label">organic sessions</span></div>
+              <div><span class="case__stat" data-stat="5.2x">5.2x</span><span class="case__stat-label">demo requests</span></div>
             </div>
           </div>
         </div>

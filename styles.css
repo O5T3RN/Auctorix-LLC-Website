@@ -780,3 +780,126 @@ ul,ol{ list-style:none; }
     transform: translateY(0);
   }
 }
+
+/* ==========================================================
+   CUSTOM CURSOR
+   ========================================================== */
+*, *::before, *::after{ cursor: none; }
+@media (hover: none){ *, *::before, *::after{ cursor: auto; } }
+
+.cursor{
+  position: fixed;
+  top: 0; left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+}
+.cursor__dot{
+  position: absolute;
+  width: 6px; height: 6px;
+  background: #fff;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s var(--ease), width 0.25s var(--ease), height 0.25s var(--ease);
+  will-change: transform;
+}
+.cursor__ring{
+  position: absolute;
+  width: 36px; height: 36px;
+  border: 1.5px solid rgba(255,255,255,0.55);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: transform 0.08s linear, width 0.35s var(--ease), height 0.35s var(--ease), opacity 0.3s, border-color 0.3s;
+  will-change: transform;
+}
+/* hover states — ring swells, dot disappears */
+.cursor.is-hovering .cursor__dot{
+  width: 0px; height: 0px;
+}
+.cursor.is-hovering .cursor__ring{
+  width: 64px; height: 64px;
+  border-color: var(--signal);
+  opacity: 0.9;
+}
+/* link/button label inside ring on hover */
+.cursor.is-hovering::after{
+  content: attr(data-label);
+  position: absolute;
+  transform: translate(-50%, -50%);
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  color: var(--signal);
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+/* hide on touch devices */
+@media (hover: none){ .cursor{ display: none; } }
+
+/* ==========================================================
+   CLIP-MASK WORD REVEAL (hero title)
+   ========================================================== */
+/* Override the old titleRise animation — the outer line no longer animates,
+   the inner .word-reveal does the actual motion via clip + translate */
+.hero__title-line{
+  display: block;
+  overflow: hidden;        /* this is the mask */
+  opacity: 1 !important;
+  transform: none !important;
+  animation: none !important;
+}
+.word-reveal{
+  display: block;
+  transform: translateY(110%);
+  opacity: 0;
+  animation: wordSlideUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.hero__title-line:nth-child(1) .word-reveal{ animation-delay: 0.1s; }
+.hero__title-line:nth-child(2) .word-reveal{ animation-delay: 0.28s; }
+.hero__title-line:nth-child(3) .word-reveal{ animation-delay: 0.46s; }
+
+@keyframes wordSlideUp{
+  to{ transform: translateY(0); opacity: 1; }
+}
+
+/* cascade the hero sub + actions slightly behind the last title line */
+.hero__sub{
+  opacity: 0;
+  transform: translateY(18px);
+  animation: riseIn 0.75s cubic-bezier(0.16,1,0.3,1) forwards;
+  animation-delay: 0.72s;
+}
+.hero__actions{
+  opacity: 0;
+  transform: translateY(14px);
+  animation: riseIn 0.75s cubic-bezier(0.16,1,0.3,1) forwards;
+  animation-delay: 0.88s;
+}
+.hero__footnote{
+  opacity: 0;
+  animation: riseIn 0.6s cubic-bezier(0.16,1,0.3,1) forwards;
+  animation-delay: 1.0s;
+}
+
+/* ==========================================================
+   TEXT SCRAMBLE (nav links)
+   ========================================================== */
+.scramble{ display: inline-block; }
+/* no extra CSS needed — JS drives the content directly */
+
+/* ==========================================================
+   STAT COUNTER
+   ========================================================== */
+.case__stat{
+  display: block;
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 26px;
+  color: var(--signal);
+  /* override only the transition for the count-up effect */
+  transition: opacity 0.3s;
+}
+/* stat starts invisible, JS fades in as it counts */
+.case__stat[data-stat].counting{
+  opacity: 0.2;
+}

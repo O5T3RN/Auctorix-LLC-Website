@@ -376,3 +376,152 @@
   });
 
 })();
+
+// ================================================================
+// 1. CUSTOM MAGNETIC CURSOR
+// ================================================================
+(function initCursor(){
+  if (window.matchMedia('(hover: none)').matches) return; // touch only — skip
+  const cursor = document.getElementById('cursor');
+  const dot    = cursor?.querySelector('.cursor__dot');
+  const ring   = cursor?.querySelector('.cursor__ring');
+  if (!cursor) return;
+
+  let mx = -200, my = -200; // start offscreen
+  let rx = -200, ry = -200; // ring lags behind dot
+
+  // Move dot instantly, ring lerps
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX;
+    my = e.clientY;
+  });
+
+  (function moveCursor(){
+    requestAnimationFrame(moveCursor);
+    // ring lerps toward dot
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) * 0.12;
+    dot.style.transform  = `translate(calc(${mx}px - 50%), calc(${my}px - 50%))`;
+    ring.style.transform = `translate(calc(${rx}px - 50%), calc(${ry}px - 50%))`;
+  })();
+
+  // Hover detection — swell on interactive elements
+  const interactives = 'a, button, .tilt-card, input, textarea, .service-row, [data-cursor]';
+  document.querySelectorAll(interactives).forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.classList.add('is-hovering');
+      // optional label from data-cursor attr
+      cursor.setAttribute('data-label', el.dataset.cursor || '');
+    });
+    el.addEventListener('mouseleave', () => {
+      cursor.classList.remove('is-hovering');
+      cursor.removeAttribute('data-label');
+    });
+  });
+
+  // Hide when mouse leaves window
+  document.addEventListener('mouseleave', () => { cursor.style.opacity = '0'; });
+  document.addEventListener('mouseenter', () => { cursor.style.opacity = '1'; });
+})();
+
+// ================================================================
+// 2. TEXT SCRAMBLE on nav link hover
+// ================================================================
+(function initScramble(){
+  const CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&';
+  const DURATION = 500; // ms total scramble → resolve
+
+  document.querySelectorAll('.nav__links .scramble').forEach(el => {
+    const original = el.textContent;
+    let raf, startTime;
+
+    function scramble(ts){
+      if (!startTime) startTime = ts;
+      const elapsed  = ts - startTime;
+      const progress = Math.min(elapsed / DURATION, 1);
+      // Resolve left-to-right as progress increases
+      const resolvedCount = Math.floor(progress * original.length);
+      let result = '';
+      for (let i = 0; i < original.length; i++){
+        if (i < resolvedCount || original[i] === ' '){
+          result += original[i];
+        } else {
+          result += CHARS[Math.floor(Math.random() * CHARS.length)];
+        }
+      }
+      el.textContent = result;
+      if (progress < 1){ raf = requestAnimationFrame(scramble); }
+      else { el.textContent = original; }
+    }
+
+    el.closest('a').addEventListener('mouseenter', () => {
+      cancelAnimationFrame(raf);
+      startTime = null;
+      raf = requestAnimationFrame(scramble);
+    });
+    el.closest('a').addEventListener('mouseleave', () => {
+      cancelAnimationFrame(raf);
+      el.textContent = original;
+    });
+  });
+})();
+
+// ================================================================
+// 3. STAT COUNTER — rolls up from 0 when card enters viewport
+// ================================================================
+(function initStatCounters(){
+  const stats = document.querySelectorAll('.case__stat[data-stat]');
+  if (!stats.length) return;
+
+  // Parse a stat string into prefix, number, suffix
+  function parseStat(str){
+    // e.g. "+142%"  "−31%"  "3.4x"  "21"  "+88%"  "5.2x"
+    const m = str.match(/^([+−\-]?)(\d+(?:\.\d+)?)(.*)$/);
+    if (!m) return { prefix: '', num: 0, suffix: str, isFloat: false };
+    return {
+      prefix:  m[1],
+      num:     parseFloat(m[2]),
+      suffix:  m[3],
+      isFloat: m[2].includes('.')
+    };
+  }
+
+  function easeOutCubic(t){ return 1 - Math.pow(1 - t, 3); }
+
+  const DURATION = 1400; // ms
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      const { prefix, num, suffix, isFloat } = parseStat(el.dataset.stat);
+      let startTime = null;
+
+      // Only run once
+      observer.unobserve(el);
+
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+        el.textContent = el.dataset.stat; return;
+      }
+
+      function tick(ts){
+        if (!startTime) startTime = ts;
+        const elapsed  = ts - startTime;
+        const progress = Math.min(elapsed / DURATION, 1);
+        const eased    = easeOutCubic(progress);
+        const current  = num * eased;
+        const display  = isFloat ? current.toFixed(1) : Math.floor(current).toString();
+        el.textContent = prefix + display + suffix;
+        if (progress < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    });
+  }, { threshold: 0.6 });
+
+  stats.forEach(el => {
+    // Initialise to "0" before it enters view
+    const { prefix, suffix, isFloat } = parseStat(el.dataset.stat);
+    el.textContent = prefix + (isFloat ? '0.0' : '0') + suffix;
+    observer.observe(el);
+  });
+})();
