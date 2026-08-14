@@ -368,12 +368,10 @@
   // ================================================================
   const form = document.getElementById('contactForm');
   const note = document.getElementById('formNote');
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-    note.textContent = "Thanks — that landed. We'll reply within one business day.";
-    note.classList.add('is-success');
-    form.reset();
-  });
+  form.addEventListener('submit', () => {
+  // Native POST to Formspree — no JS interception needed
+  // Formspree handles the redirect back after submission
+});
 
 })();
 
