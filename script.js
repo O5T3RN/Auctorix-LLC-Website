@@ -368,9 +368,9 @@
   // ================================================================
   const form = document.getElementById('contactForm');
   const note = document.getElementById('formNote');
-  form.addEventListener('submit', () => {
-  // Native POST to Formspree — no JS interception needed
-  // Formspree handles the redirect back after submission
+  if (window.location.search.includes('submission=success')) {
+  document.getElementById('formNote').textContent = "Thanks — that landed. We'll reply within one business day.";
+  document.getElementById('contactForm').style.display = 'none';
 });
 
 })();
