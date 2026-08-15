@@ -390,12 +390,18 @@
   let mx = -200, my = -200;
   let rx = -200, ry = -200;
 
+  let hasMovedOnce = false;
+
   document.addEventListener('mousemove', e => {
     mx = e.clientX;
     my = e.clientY;
-    cursor.style.opacity = '1';  // ADD THIS — show on first move
+    if (!hasMovedOnce) {
+      rx = mx;
+      ry = my;
+      hasMovedOnce = true;
+    }
+    cursor.style.opacity = '1';
   });
-
   (function moveCursor(){
     requestAnimationFrame(moveCursor);
     // ring lerps toward dot
