@@ -379,19 +379,21 @@
 // 1. CUSTOM MAGNETIC CURSOR
 // ================================================================
 (function initCursor(){
-  if (window.matchMedia('(hover: none)').matches) return; // touch only — skip
+  if (window.matchMedia('(hover: none)').matches) return;
   const cursor = document.getElementById('cursor');
   const dot    = cursor?.querySelector('.cursor__dot');
   const ring   = cursor?.querySelector('.cursor__ring');
   if (!cursor) return;
 
-  let mx = -200, my = -200; // start offscreen
-  let rx = -200, ry = -200; // ring lags behind dot
+  cursor.style.opacity = '0';  // ADD THIS — hide until first move
 
-  // Move dot instantly, ring lerps
+  let mx = -200, my = -200;
+  let rx = -200, ry = -200;
+
   document.addEventListener('mousemove', e => {
     mx = e.clientX;
     my = e.clientY;
+    cursor.style.opacity = '1';  // ADD THIS — show on first move
   });
 
   (function moveCursor(){
