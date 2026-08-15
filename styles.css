@@ -785,7 +785,9 @@ ul,ol{ list-style:none; }
    CUSTOM CURSOR
    ========================================================== */
 *, *::before, *::after{ cursor: none; }
-@media (hover: none){ *, *::before, *::after{ cursor: auto; } }
+@media (pointer: fine){
+  *, *::before, *::after{ cursor: none; }
+}
 
 .cursor{
   position: fixed;
