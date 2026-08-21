@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Auctorix — Marketing, Engineered</title>
+<meta name="description" content="Auctorix is a marketing studio that builds authority by design. Strategy, content, and growth systems engineered for measurable leverage.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="cursor" id="cursor" aria-hidden="true"><div class="cursor__dot"></div><div class="cursor__ring"></div></div>
+
+<div class="scroll-rail" aria-hidden="true"><div class="scroll-rail__fill" id="railFill"></div></div>
+
+<!-- Three.js hero canvas — sits behind everything in the hero -->
+<canvas id="heroCanvas" aria-hidden="true"></canvas>
+
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a href="#top" class="nav__brand" aria-label="Auctorix home">
+      <img src="assets/mark-only-white.png" alt="" class="nav__mark nav__mark--dark">
+      <img src="assets/mark-only-black.png" alt="" class="nav__mark nav__mark--light">
+      <span class="nav__word">AUCTORIX</span>
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#work" data-section="work"><span class="nav__tag">§01</span><span class="scramble">Work</span></a>
+      <a href="#approach" data-section="approach"><span class="nav__tag">§02</span><span class="scramble">Approach</span></a>
+      <a href="#services" data-section="services"><span class="nav__tag">§03</span><span class="scramble">Services</span></a>
+      <a href="#about" data-section="about"><span class="nav__tag">§04</span><span class="scramble">About</span></a>
+      <a href="#contact" class="nav__cta">Start a project</a>
+    </nav>
+    <button class="nav__burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <nav aria-label="Mobile primary">
+    <a href="#work" data-section="work"><span class="mobile-menu__num">§01</span><span class="scramble">Work</span></a>
+    <a href="#approach" data-section="approach"><span class="mobile-menu__num">§02</span><span class="scramble">Approach</span></a>
+    <a href="#services" data-section="services"><span class="mobile-menu__num">§03</span><span class="scramble">Services</span></a>
+    <a href="#about" data-section="about"><span class="mobile-menu__num">§04</span><span class="scramble">About</span></a>
+    <a href="#contact" data-section="contact"><span class="mobile-menu__num">§05</span><span class="scramble">Contact</span></a>
+  </nav>
+  <div class="mobile-menu__footer">
+    <span>Coos Bay, Oregon</span><span>Est. 2026</span>
+  </div>
+</div>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero__plate" aria-hidden="true">
+      <svg class="hero__tick hero__tick--a" viewBox="0 0 200 60" aria-hidden="true">
+        <line x1="0" y1="30" x2="160" y2="30"></line>
+        <line x1="160" y1="20" x2="160" y2="40"></line>
+        <text x="170" y="34" class="tick-label">64°</text>
+      </svg>
+      <svg class="hero__tick hero__tick--b" viewBox="0 0 200 60" aria-hidden="true">
+        <line x1="0" y1="30" x2="160" y2="30"></line>
+        <line x1="160" y1="20" x2="160" y2="40"></line>
+        <text x="170" y="34" class="tick-label">38°</text>
+      </svg>
+    </div>
+    <div class="hero__content">
+      <p class="eyebrow"><span class="eyebrow__dot"></span>Marketing studio — Coos Bay, OR</p>
+      <h1 class="hero__title">
+        <span class="hero__title-line"><span class="word-reveal">Authority is</span></span>
+        <span class="hero__title-line hero__title-line--accent"><span class="word-reveal">built, not<span class="hero__title-asterisk">*</span></span></span>
+        <span class="hero__title-line"><span class="word-reveal">borrowed.</span></span>
+      </h1>
+      <p class="hero__sub">Auctorix designs the systems behind brands people trust — the campaigns, the content cadence, the proof — so growth holds its angle instead of collapsing under pressure.</p>
+      <div class="hero__actions">
+        <a href="#contact" class="btn btn--primary">Start a project</a>
+        <a href="#work" class="btn btn--ghost">See the work<span class="btn__arrow">↓</span></a>
+      </div>
+      <p class="hero__footnote">*founded on structure, calibrated by data.</p>
+    </div>
+    <div class="hero__scroll-cue" aria-hidden="true">
+      <span>Scroll</span>
+      <div class="hero__scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <section class="strip" aria-label="What we work on">
+    <div class="strip__track">
+      <span>BRAND STRATEGY</span><span class="strip__sep">/</span>
+      <span>PAID MEDIA</span><span class="strip__sep">/</span>
+      <span>CONTENT SYSTEMS</span><span class="strip__sep">/</span>
+      <span>SEO &amp; ORGANIC</span><span class="strip__sep">/</span>
+      <span>LIFECYCLE EMAIL</span><span class="strip__sep">/</span>
+      <span>ANALYTICS</span><span class="strip__sep">/</span>
+      <span>BRAND STRATEGY</span><span class="strip__sep">/</span>
+      <span>PAID MEDIA</span><span class="strip__sep">/</span>
+      <span>CONTENT SYSTEMS</span><span class="strip__sep">/</span>
+      <span>SEO &amp; ORGANIC</span><span class="strip__sep">/</span>
+      <span>LIFECYCLE EMAIL</span><span class="strip__sep">/</span>
+      <span>ANALYTICS</span><span class="strip__sep">/</span>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section class="section section--work" id="work">
+    <img src="assets/mark-only-white.png" alt="" class="section-mark section-mark--dark section-mark--top" data-mark>
+    <div class="section__head">
+      <span class="section__tag">§01 — Proof</span>
+      <h2 class="section__title">Built to hold under load.</h2>
+      <p class="section__lede">A sample of the structures we've put in market. Real angles, real pressure, measured outcomes.</p>
+    </div>
+    <div class="cases">
+      <article class="case tilt-card">
+        <div class="tilt-card__inner">
+          <div class="tilt-card__shine" aria-hidden="true"></div>
+          <div class="case__plate"><svg viewBox="0 0 100 100" class="case__svg" aria-hidden="true"><polygon points="50,8 90,88 64,88 50,58 36,88 10,88"/></svg></div>
+          <div class="case__body">
+            <p class="case__client">Regional Auto Group</p>
+            <h3 class="case__headline">Service-bay leads, +142% in one quarter</h3>
+            <p class="case__copy">Rebuilt the local paid and organic funnel around real inventory and real appointment slots instead of generic offers — replacing guesswork with a weekly testing cadence.</p>
+            <div class="case__stats">
+              <div><span class="case__stat" data-stat="+142%">+142%</span><span class="case__stat-label">qualified leads</span></div>
+              <div><span class="case__stat" data-stat="−31%">−31%</span><span class="case__stat-label">cost per lead</span></div>
+            </div>
+          </div>
+        </div>
+      </article>
+      <article class="case tilt-card">
+        <div class="tilt-card__inner">
+          <div class="tilt-card__shine" aria-hidden="true"></div>
+          <div class="case__plate"><svg viewBox="0 0 100 100" class="case__svg" aria-hidden="true"><polygon points="50,8 90,88 64,88 50,58 36,88 10,88"/></svg></div>
+          <div class="case__body">
+            <p class="case__client">Coastal Hospitality Brand</p>
+            <h3 class="case__headline">A content engine that outlasted the season</h3>
+            <p class="case__copy">Replaced one-off posts with a repeatable production system — brief, shoot, cut, publish — so off-season bookings stopped depending on luck.</p>
+            <div class="case__stats">
+              <div><span class="case__stat" data-stat="3.4x">3.4x</span><span class="case__stat-label">off-season bookings</span></div>
+              <div><span class="case__stat" data-stat="21">21</span><span class="case__stat-label">assets / week, sustained</span></div>
+            </div>
+          </div>
+        </div>
+      </article>
+      <article class="case tilt-card">
+        <div class="tilt-card__inner">
+          <div class="tilt-card__shine" aria-hidden="true"></div>
+          <div class="case__plate"><svg viewBox="0 0 100 100" class="case__svg" aria-hidden="true"><polygon points="50,8 90,88 64,88 50,58 36,88 10,88"/></svg></div>
+          <div class="case__body">
+            <p class="case__client">B2B Industrial Supplier</p>
+            <h3 class="case__headline">Made a 40-year-old brand legible online</h3>
+            <p class="case__copy">Untangled a decade of inconsistent messaging into one clear position, then rebuilt the site and outbound sequence around it.</p>
+            <div class="case__stats">
+              <div><span class="case__stat" data-stat="+88%">+88%</span><span class="case__stat-label">organic sessions</span></div>
+              <div><span class="case__stat" data-stat="5.2x">5.2x</span><span class="case__stat-label">demo requests</span></div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- APPROACH -->
+  <section class="section section--approach" id="approach">
+    <img src="assets/mark-only-black.png" alt="" class="section-mark section-mark--light" data-mark>
+    <div class="approach__grid">
+      <div class="section__head section__head--left">
+        <span class="section__tag">§02 — Approach</span>
+        <h2 class="section__title">Two angles. One structure.</h2>
+        <p class="section__lede">Every Auctorix mark is built from two triangles set against each other — the same way we build a brand: a steady foundation, and a sharper edge pushing through it.</p>
+      </div>
+      <div class="approach__items">
+        <div class="approach__item" data-angle="64°">
+          <div class="approach__num">64°</div>
+          <div class="approach__body">
+            <h3>The foundation angle</h3>
+            <p>Research, positioning, and message architecture. This is the wide base — the part of the work that doesn't move once it's set, because it's load-bearing for everything after it.</p>
+          </div>
+        </div>
+        <div class="approach__item" data-angle="38°">
+          <div class="approach__num">38°</div>
+          <div class="approach__body">
+            <h3>The leverage angle</h3>
+            <p>Campaigns, content, and channel execution. This is the sharper line — fast-moving, tested weekly, built to cut through a crowded feed without losing the foundation underneath it.</p>
+          </div>
+        </div>
+        <div class="approach__item" data-angle="180°">
+          <div class="approach__num">180°</div>
+          <div class="approach__body">
+            <h3>The full picture</h3>
+            <p>Reporting that ties activity back to revenue. No vanity metrics presented without the number they're supposed to move — every campaign closes the loop.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="section section--services" id="services">
+    <img src="assets/mark-only-white.png" alt="" class="section-mark section-mark--dark" data-mark>
+    <div class="section__head">
+      <span class="section__tag">§03 — Services</span>
+      <h2 class="section__title">What we build.</h2>
+    </div>
+    <div class="services__list">
+      <div class="service-row"><h3 class="service-row__name">Brand &amp; Positioning</h3><p class="service-row__desc">Naming, voice, visual identity, and the message architecture that keeps every channel saying the same true thing.</p><span class="service-row__line" aria-hidden="true"></span></div>
+      <div class="service-row"><h3 class="service-row__name">Paid Media</h3><p class="service-row__desc">Search, social, and programmatic campaigns built around a weekly testing cadence, not a quarterly guess.</p><span class="service-row__line" aria-hidden="true"></span></div>
+      <div class="service-row"><h3 class="service-row__name">Content Systems</h3><p class="service-row__desc">Repeatable production pipelines for photo, video, and copy — so output doesn't depend on any one person's bandwidth.</p><span class="service-row__line" aria-hidden="true"></span></div>
+      <div class="service-row"><h3 class="service-row__name">SEO &amp; Organic Growth</h3><p class="service-row__desc">Technical fixes, content architecture, and local presence work that compounds instead of resetting every quarter.</p><span class="service-row__line" aria-hidden="true"></span></div>
+      <div class="service-row"><h3 class="service-row__name">Web &amp; Landing Systems</h3><p class="service-row__desc">Fast, conversion-built sites and landing pages designed to be tested and iterated, not shipped once and forgotten.</p><span class="service-row__line" aria-hidden="true"></span></div>
+      <div class="service-row"><h3 class="service-row__name">Analytics &amp; Reporting</h3><p class="service-row__desc">Dashboards that tie spend to pipeline, built so the answer to "is this working" never takes more than a glance.</p><span class="service-row__line" aria-hidden="true"></span></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section section--about" id="about">
+    <img src="assets/mark-only-white.png" alt="" class="section-mark section-mark--dark" data-mark>
+    <div class="about__grid">
+      <div class="about__portrait" aria-hidden="true">
+        <div class="about__portrait-frame" id="portraitFrame">
+          <svg viewBox="0 0 100 100" class="about__svg"><polygon points="50,8 90,88 64,88 50,58 36,88 10,88"/></svg>
+        </div>
+        <div class="about__coords">
+          <span>43.3665° N</span><span>124.2179° W</span><span>COOS BAY, OR</span>
+        </div>
+      </div>
+      <div class="about__content">
+        <span class="section__tag">§04 — About</span>
+        <h2 class="section__title">Built by someone who'd rather measure it than guess.</h2>
+        <p class="about__lede">I'm Tyler Ostern, founder of Auctorix.</p>
+        <p>I started this studio out of Coos Bay, Oregon, because too much "marketing" is built on instinct that nobody ever goes back and checks. I wanted to run a shop that treats a campaign less like a piece of art and more like a structure — something you can test, measure, and trust to hold weight.</p>
+        <p>That's where the name comes from. <em>Auctorix</em> takes its root from the Latin <em>auctor</em> — an originator, the one whose authority a thing is built on. The mark is two triangles set at different angles, braced against each other: a wide, stable base and a sharp leading edge. That's the whole philosophy. Steady foundations. Sharp execution. Nothing left to luck.</p>
+        <p>Every engagement starts the same way — by figuring out what's actually load-bearing in your brand, and what's just decoration. Then we build from there.</p>
+        <a href="#contact" class="link-arrow">Get in touch <span>→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section section--contact" id="contact">
+    <div class="contact__plate" aria-hidden="true">
+      <svg viewBox="0 0 100 100"><polygon points="50,8 90,88 64,88 50,58 36,88 10,88"/></svg>
+    </div>
+    <div class="contact__content">
+      <span class="section__tag section__tag--light">§05 — Start a project</span>
+      <h2 class="contact__title">Let's set the angle.</h2>
+      <p class="contact__sub">Tell us what you're building and where it's stuck. We'll reply within one business day with a straight answer about whether we're the right shop for it.</p>
+      <form class="contact__form" id="contactForm">
+        <div class="form__row"><label for="name">Name</label><input type="text" id="name" name="name" required autocomplete="name"></div>
+        <div class="form__row"><label for="email">Email</label><input type="email" id="email" name="email" required autocomplete="email"></div>
+        <div class="form__row"><label for="company">Company</label><input type="text" id="company" name="company" autocomplete="organization"></div>
+        <div class="form__row"><label for="message">What are you building?</label><textarea id="message" name="message" rows="4" required></textarea></div>
+        <button type="submit" class="btn btn--primary btn--block">Send it over</button>
+        <p class="form__note" id="formNote" role="status"></p>
+      </form>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <img src="assets/mark-only-white.png" alt="Auctorix" class="footer__mark">
+        <p>AUCTORIX LLC<br>Coos Bay, Oregon</p>
+      </div>
+      <nav class="footer__links" aria-label="Footer">
+        <a href="#work">Work</a><a href="#approach">Approach</a>
+        <a href="#services">Services</a><a href="#about">About</a><a href="#contact">Contact</a>
+      </nav>
+      <p class="footer__legal">© 2026 Auctorix LLC. All rights reserved.</p>
+    </div>
+  </footer>
+</main>
+
+<script src="assets/three.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
